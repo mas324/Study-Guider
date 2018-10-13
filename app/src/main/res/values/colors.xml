@@ -3,4 +3,13 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+	<color name="white">#FFFFFF</color>
+	
+    <color name="colorQuestion">#094B8E</color>
+	<color name="colorQuestionText">#9EE6ED</color>
+	<color name="colorAnswerBase">#8000FF</color>
+	<color name="colorAnswerCorrect">#008C46</color>
+	<color name="colorAnswerWrong">#8C2300</color>
+	<color name="colorAnswerTextCorrect">#96FF73</color>
+	<color name="colorAnswerTextWrong">#FF8080</color>
 </resources>

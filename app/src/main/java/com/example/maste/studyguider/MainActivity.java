@@ -29,5 +29,7 @@ public class MainActivity extends AppCompatActivity {
                 findViewById(R.id.flashQuestion).setVisibility(View.VISIBLE);
             }
         });
+
+        
     }
 }

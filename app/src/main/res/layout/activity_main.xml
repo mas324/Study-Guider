@@ -8,6 +8,8 @@
 
     <TextView
         android:id="@+id/flashQuestion"
+        android:background="@color/colorQuestion"
+        android:textColor="@color/colorQuestionText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -19,15 +21,44 @@
         android:textSize="40sp" />
 
     <TextView
-        android:id="@+id/flashAnswer"
+        android:id="@+id/flashAnswer1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/flashQuestion"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="49dp"
+        android:layout_marginTop="60dp"
+        android:background="@color/colorAnswerBase"
         android:text="@string/textAnswer1"
         android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="36sp"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/flashAnswer2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/flashAnswer1"
+        android:layout_marginTop="40dp"
+        android:background="@color/colorAnswerBase"
+        android:text="@string/textAnswer1"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="36sp"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/flashAnswer3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/flashAnswer2"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="40dp"
+        android:background="@color/colorAnswerBase"
+        android:text="@string/textAnswer1"
+        android:textAlignment="center"
+        android:textColor="@color/white"
         android:textSize="36sp"
         android:visibility="invisible" />
 

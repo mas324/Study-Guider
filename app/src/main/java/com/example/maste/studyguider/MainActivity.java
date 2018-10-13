@@ -19,15 +19,5 @@ public class MainActivity extends AppCompatActivity {
                 findViewById(R.id.flashAnswer).setVisibility(View.VISIBLE);
             }
         });
-
-        findViewById(R.id.flashAnswer).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Hide the answer
-                findViewById(R.id.flashAnswer).setVisibility(View.INVISIBLE);
-                //Show the question
-                findViewById(R.id.flashQuestion).setVisibility(View.VISIBLE);
-            }
-        });
     }
 }

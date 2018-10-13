@@ -1,9 +1,8 @@
 package com.example.maste.studyguider;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -12,12 +11,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        findViewById(R.id.screenView).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.flashQuestion).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //Hide the question
-                ((TextView) findViewById(R.id.question)).setVisibility(View.INVISIBLE);
+                findViewById(R.id.flashQuestion).setVisibility(View.INVISIBLE);
                 //Show the answer
-                ((TextView) findViewById(R.id.answer)).setVisibility(View.VISIBLE);
+                findViewById(R.id.flashAnswer).setVisibility(View.VISIBLE);
+            }
+        });
+
+        findViewById(R.id.flashAnswer).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Hide the answer
+                findViewById(R.id.flashAnswer).setVisibility(View.INVISIBLE);
+                //Show the question
+                findViewById(R.id.flashQuestion).setVisibility(View.VISIBLE);
             }
         });
     }

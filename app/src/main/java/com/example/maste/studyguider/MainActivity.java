@@ -20,12 +20,12 @@ public class MainActivity extends AppCompatActivity {
         final int answer2 = R.id.flashAnswer2;
         final int answer3 = R.id.flashAnswer3;
 
-        findViewById(answer1).setOnClickListener(new View.OnClickListener() {
+        findViewById(answer3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Set to correct colors
-                findViewById(answer1).setBackgroundColor(getResources().getColor(R.color.colorAnswerCorrect, null));
-                ((TextView) findViewById(answer1)).setTextColor(getResources().getColor(R.color.colorAnswerTextCorrect, null));
+                findViewById(answer3).setBackgroundColor(getResources().getColor(R.color.colorAnswerCorrect, null));
+                ((TextView) findViewById(answer3)).setTextColor(getResources().getColor(R.color.colorAnswerTextCorrect, null));
             }
         });
 
@@ -36,20 +36,20 @@ public class MainActivity extends AppCompatActivity {
                 findViewById(answer2).setBackgroundColor(getResources().getColor(R.color.colorAnswerWrong, null));
                 ((TextView) findViewById(answer2)).setTextColor(getResources().getColor(R.color.colorAnswerTextWrong, null));
                 //Set to correct colors
-                findViewById(answer1).setBackgroundColor(getResources().getColor(R.color.colorAnswerCorrect, null));
-                ((TextView) findViewById(answer1)).setTextColor(getResources().getColor(R.color.colorAnswerTextCorrect, null));
+                findViewById(answer3).setBackgroundColor(getResources().getColor(R.color.colorAnswerCorrect, null));
+                ((TextView) findViewById(answer3)).setTextColor(getResources().getColor(R.color.colorAnswerTextCorrect, null));
             }
         });
 
-        findViewById(answer3).setOnClickListener(new View.OnClickListener() {
+        findViewById(answer1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Set to wrong colors
-                findViewById(answer3).setBackgroundColor(getResources().getColor(R.color.colorAnswerWrong, null));
-                ((TextView) findViewById(answer3)).setTextColor(getResources().getColor(R.color.colorAnswerTextWrong, null));
+                findViewById(answer1).setBackgroundColor(getResources().getColor(R.color.colorAnswerWrong, null));
+                ((TextView) findViewById(answer1)).setTextColor(getResources().getColor(R.color.colorAnswerTextWrong, null));
                 //Set to correct colors
-                findViewById(answer1).setBackgroundColor(getResources().getColor(R.color.colorAnswerCorrect, null));
-                ((TextView) findViewById(answer1)).setTextColor(getResources().getColor(R.color.colorAnswerTextCorrect, null));
+                findViewById(answer3).setBackgroundColor(getResources().getColor(R.color.colorAnswerCorrect, null));
+                ((TextView) findViewById(answer3)).setTextColor(getResources().getColor(R.color.colorAnswerTextCorrect, null));
             }
         });
 

@@ -4,9 +4,12 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+
+    private boolean isVisible = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +63,26 @@ public class MainActivity extends AppCompatActivity {
                 ((TextView) findViewById(answer2)).setTextColor(Color.WHITE);
                 findViewById(answer3).setBackgroundColor(getResources().getColor(R.color.colorAnswerBase, null));
                 ((TextView) findViewById(answer3)).setTextColor(Color.WHITE);
+            }
+        });
+
+        findViewById(R.id.visibleToggle).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isVisible) {
+                    ((ImageView) findViewById(R.id.visibleToggle)).setImageResource(R.drawable.eye_invisible);
+                    findViewById(answer1).setVisibility(View.INVISIBLE);
+                    findViewById(answer2).setVisibility(View.INVISIBLE);
+                    findViewById(answer3).setVisibility(View.INVISIBLE);
+                    isVisible = false;
+                }
+                else {
+                    ((ImageView) findViewById(R.id.visibleToggle)).setImageResource(R.drawable.eye_visible);
+                    findViewById(answer1).setVisibility(View.VISIBLE);
+                    findViewById(answer2).setVisibility(View.VISIBLE);
+                    findViewById(answer3).setVisibility(View.VISIBLE);
+                    isVisible = true;
+                }
             }
         });
     }

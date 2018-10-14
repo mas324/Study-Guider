@@ -5,7 +5,7 @@ A basic flashcard app with one question and answer.
 
 ### App Walk-though
 
-<img src="https://i.imgur.com/RqNnIrf.gif" width=200><br>
+<img src="https://i.imgur.com/oO7OTs6.gif" width=200><br>
 
 ## Required
 - [x] Create New Project in Android Studio

@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Study Guider</string>
-    <string name="textQuestion">Who is the 44th president of the United States?</string>
+    <string name="textQuestion">Who is the 43rd president of the United States?</string>
     <string name="textAnswer1">Barack Obama</string>
+    <string name="textAnswer2">Bill Clinton</string>
+    <string name="textAnswer3">George H.W. Bush</string>
 </resources>

@@ -70,4 +70,12 @@
         android:contentDescription="@android:string/untitled"
         app:srcCompat="@drawable/eye_visible" />
 
+    <ImageView
+        android:id="@+id/cardAdd"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        app:srcCompat="@drawable/add_icon" />
+
 </RelativeLayout>

@@ -16,9 +16,18 @@ public class AddQuestion extends AppCompatActivity {
         findViewById(R.id.cardCancel).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                finish();
+            }
+        });
+
+        findViewById(R.id.cardSave).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 Intent result = new Intent();
-                result.putExtra("question", ((EditText) findViewById(R.id.newQuestion)).getText());
-                result.putExtra("answer", ((EditText) findViewById(R.id.newAnswer)).getText());
+                result.putExtra("question", ((EditText) findViewById(R.id.newQuestion)).getText().toString());
+                result.putExtra("answerA", ((EditText) findViewById(R.id.newAnswerA)).getText().toString());
+                result.putExtra("answerB", ((EditText) findViewById(R.id.newAnswerB)).getText().toString());
+                result.putExtra("answerC", ((EditText) findViewById(R.id.newAnswerC)).getText().toString());
                 setResult(RESULT_OK, result);
                 finish();
             }

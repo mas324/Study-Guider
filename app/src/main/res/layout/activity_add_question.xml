@@ -14,8 +14,17 @@
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="30dp"
-        android:contentDescription="Cancel Button"
         app:srcCompat="@drawable/cancel_icon" />
+
+    <ImageView
+        android:id="@+id/cardSave"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginBottom="30dp"
+        app:srcCompat="@drawable/save_icon" />
 
     <EditText
         android:id="@+id/newQuestion"
@@ -26,10 +35,10 @@
         android:layout_marginTop="45dp"
         android:ems="10"
         android:hint="@string/hint1"
-        android:inputType="text" />
+        android:inputType="textMultiLine" />
 
     <EditText
-        android:id="@+id/newAnswer"
+        android:id="@+id/newAnswerA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/newQuestion"
@@ -37,5 +46,27 @@
         android:layout_marginTop="45dp"
         android:ems="10"
         android:hint="@string/hint2"
-        android:inputType="text" />
+        android:inputType="textMultiLine" />
+
+    <EditText
+        android:id="@+id/newAnswerB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/newAnswerA"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:hint="@string/hint2"
+        android:inputType="textMultiLine" />
+
+    <EditText
+        android:id="@+id/newAnswerC"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/newAnswerB"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:hint="@string/hint2"
+        android:inputType="textMultiLine" />
+
 </RelativeLayout>

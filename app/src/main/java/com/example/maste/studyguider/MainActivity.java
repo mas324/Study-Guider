@@ -11,15 +11,15 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     private boolean isVisible = true;
+    final int question = R.id.flashQuestion;
+    final int answer1 = R.id.flashAnswer1;
+    final int answer2 = R.id.flashAnswer2;
+    final int answer3 = R.id.flashAnswer3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        final int answer1 = R.id.flashAnswer1;
-        final int answer2 = R.id.flashAnswer2;
-        final int answer3 = R.id.flashAnswer3;
 
         findViewById(answer3).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,7 +100,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         if (requestCode == 1) {
             String string1 = data.getExtras().getString("question");
-            String string2 = data.getExtras().getString("answer");
+            String answerA = data.getExtras().getString("answerA");
+            String answerB = data.getExtras().getString("answerB");
+            String answerC = data.getExtras().getString("answerC");
+
+            ((TextView) findViewById(question)).setText(string1);
+            ((TextView) findViewById(answer1)).setText(answerA);
+            ((TextView) findViewById(answer2)).setText(answerB);
+            ((TextView) findViewById(answer3)).setText(answerC);
         }
     }
 }

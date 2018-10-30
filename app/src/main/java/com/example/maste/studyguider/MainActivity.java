@@ -14,6 +14,9 @@ public class MainActivity extends AppCompatActivity {
     private final int answer1 = R.id.flashAnswer1;
     private final int answer2 = R.id.flashAnswer2;
     private final int answer3 = R.id.flashAnswer3;
+    private boolean isAnsA = false;
+    private boolean isAnsB = false;
+    private boolean isAnsC = true;
     private boolean isVisible = true;
 
     @Override
@@ -21,36 +24,72 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        findViewById(answer3).setOnClickListener(new View.OnClickListener() {
+        findViewById(answer1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Set to correct colors
-                findViewById(answer3).setBackgroundColor(getResources().getColor(R.color.colorAnswerCorrect, null));
-                ((TextView) findViewById(answer3)).setTextColor(getResources().getColor(R.color.colorAnswerTextCorrect, null));
+                if (isAnsA) {
+                    //Set to correct colors
+                    findViewById(answer1).setBackgroundColor(getResources().getColor(R.color.colorAnswerCorrect, null));
+                    ((TextView) findViewById(answer1)).setTextColor(getResources().getColor(R.color.colorAnswerTextCorrect, null));
+                } else {
+                    //Set to wrong colors
+                    if (isAnsB) {
+                        findViewById(answer2).setBackgroundColor(getResources().getColor(R.color.colorAnswerCorrect, null));
+                        ((TextView) findViewById(answer2)).setTextColor(getResources().getColor(R.color.colorAnswerTextCorrect, null));
+                    } else if (isAnsC) {
+                        findViewById(answer3).setBackgroundColor(getResources().getColor(R.color.colorAnswerCorrect, null));
+                        ((TextView) findViewById(answer3)).setTextColor(getResources().getColor(R.color.colorAnswerTextCorrect, null));
+                    }
+
+                    findViewById(answer1).setBackgroundColor(getResources().getColor(R.color.colorAnswerWrong, null));
+                    ((TextView) findViewById(answer1)).setTextColor(getResources().getColor(R.color.colorAnswerTextWrong, null));
+                }
             }
         });
 
         findViewById(answer2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Set to wrong colors
-                findViewById(answer2).setBackgroundColor(getResources().getColor(R.color.colorAnswerWrong, null));
-                ((TextView) findViewById(answer2)).setTextColor(getResources().getColor(R.color.colorAnswerTextWrong, null));
-                //Set to correct colors
-                findViewById(answer3).setBackgroundColor(getResources().getColor(R.color.colorAnswerCorrect, null));
-                ((TextView) findViewById(answer3)).setTextColor(getResources().getColor(R.color.colorAnswerTextCorrect, null));
+                if (isAnsB) {
+                    //Set to correct colors
+                    findViewById(answer2).setBackgroundColor(getResources().getColor(R.color.colorAnswerCorrect, null));
+                    ((TextView) findViewById(answer2)).setTextColor(getResources().getColor(R.color.colorAnswerTextCorrect, null));
+                } else {
+                    //Set to wrong colors
+                    if (isAnsA) {
+                        findViewById(answer1).setBackgroundColor(getResources().getColor(R.color.colorAnswerCorrect, null));
+                        ((TextView) findViewById(answer1)).setTextColor(getResources().getColor(R.color.colorAnswerTextCorrect, null));
+                    } else if (isAnsC) {
+                        findViewById(answer3).setBackgroundColor(getResources().getColor(R.color.colorAnswerCorrect, null));
+                        ((TextView) findViewById(answer3)).setTextColor(getResources().getColor(R.color.colorAnswerTextCorrect, null));
+                    }
+
+                    findViewById(answer2).setBackgroundColor(getResources().getColor(R.color.colorAnswerWrong, null));
+                    ((TextView) findViewById(answer2)).setTextColor(getResources().getColor(R.color.colorAnswerTextWrong, null));
+                }
             }
         });
 
-        findViewById(answer1).setOnClickListener(new View.OnClickListener() {
+        findViewById(answer3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Set to wrong colors
-                findViewById(answer1).setBackgroundColor(getResources().getColor(R.color.colorAnswerWrong, null));
-                ((TextView) findViewById(answer1)).setTextColor(getResources().getColor(R.color.colorAnswerTextWrong, null));
-                //Set to correct colors
-                findViewById(answer3).setBackgroundColor(getResources().getColor(R.color.colorAnswerCorrect, null));
-                ((TextView) findViewById(answer3)).setTextColor(getResources().getColor(R.color.colorAnswerTextCorrect, null));
+                if (isAnsC) {
+                    //Set to correct colors
+                    findViewById(answer3).setBackgroundColor(getResources().getColor(R.color.colorAnswerCorrect, null));
+                    ((TextView) findViewById(answer3)).setTextColor(getResources().getColor(R.color.colorAnswerTextCorrect, null));
+                } else {
+                    //Set to wrong colors
+                    if (isAnsA) {
+                        findViewById(answer1).setBackgroundColor(getResources().getColor(R.color.colorAnswerCorrect, null));
+                        ((TextView) findViewById(answer1)).setTextColor(getResources().getColor(R.color.colorAnswerTextCorrect, null));
+                    } else if (isAnsB) {
+                        findViewById(answer2).setBackgroundColor(getResources().getColor(R.color.colorAnswerCorrect, null));
+                        ((TextView) findViewById(answer2)).setTextColor(getResources().getColor(R.color.colorAnswerTextCorrect, null));
+                    }
+
+                    findViewById(answer3).setBackgroundColor(getResources().getColor(R.color.colorAnswerWrong, null));
+                    ((TextView) findViewById(answer3)).setTextColor(getResources().getColor(R.color.colorAnswerTextWrong, null));
+                }
             }
         });
 
@@ -90,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, AddQuestion.class);
-                MainActivity.this.startActivityForResult(intent, 1);
+                MainActivity.this.startActivityForResult(intent, 50);
             }
         });
 
@@ -102,7 +141,10 @@ public class MainActivity extends AppCompatActivity {
                 data.putExtra("currentAnswerA", ((TextView) findViewById(answer1)).getText().toString());
                 data.putExtra("currentAnswerB", ((TextView) findViewById(answer2)).getText().toString());
                 data.putExtra("currentAnswerC", ((TextView) findViewById(answer3)).getText().toString());
-                MainActivity.this.startActivityForResult(data, 1);
+                data.putExtra("isAnswerA", isAnsA);
+                data.putExtra("isAnswerB", isAnsB);
+                data.putExtra("isAnswerC", isAnsC);
+                MainActivity.this.startActivityForResult(data, 50);
             }
         });
     }
@@ -110,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
     @SuppressWarnings("ConstantConditions")
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 1 && resultCode == RESULT_OK) {
+        if (requestCode == 50 && resultCode == RESULT_OK) {
             String string1 = data.getExtras().getString("question");
             String answerA = data.getExtras().getString("answerA");
             String answerB = data.getExtras().getString("answerB");
@@ -120,6 +162,10 @@ public class MainActivity extends AppCompatActivity {
             ((TextView) findViewById(answer1)).setText(answerA);
             ((TextView) findViewById(answer2)).setText(answerB);
             ((TextView) findViewById(answer3)).setText(answerC);
+
+            isAnsA = data.getBooleanExtra("markA", false);
+            isAnsB = data.getBooleanExtra("markB", false);
+            isAnsC = data.getBooleanExtra("markC", false);
 
             //Resets the answers
             findViewById(answer1).setBackgroundColor(getResources().getColor(R.color.colorAnswerBase, null));

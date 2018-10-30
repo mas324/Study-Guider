@@ -5,14 +5,18 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 public class AddQuestion extends AppCompatActivity {
 
     private EditText question;
-    private EditText ans1;
-    private EditText ans2;
-    private EditText ans3;
+    private EditText ansA;
+    private EditText ansB;
+    private EditText ansC;
+    private RadioButton selectA;
+    private RadioButton selectB;
+    private RadioButton selectC;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,20 +24,22 @@ public class AddQuestion extends AppCompatActivity {
         setContentView(R.layout.activity_add_question);
 
         question = findViewById(R.id.newQuestion);
-        ans1 = findViewById(R.id.newAnswerA);
-        ans2 = findViewById(R.id.newAnswerB);
-        ans3 = findViewById(R.id.newAnswerC);
+        ansA = findViewById(R.id.newAnswerA);
+        ansB = findViewById(R.id.newAnswerB);
+        ansC = findViewById(R.id.newAnswerC);
+        selectA = findViewById(R.id.selectAnswerA);
+        selectB = findViewById(R.id.selectAnswerB);
+        selectC = findViewById(R.id.selectAnswerC);
 
         if (getIntent().getExtras() != null) {
-            String fillQuestion = getIntent().getStringExtra("currentQuestion");
-            String fillAnswer1 = getIntent().getStringExtra("currentAnswerA");
-            String fillAnswer2 = getIntent().getStringExtra("currentAnswerB");
-            String fillAnswer3 = getIntent().getStringExtra("currentAnswerC");
+            question.setText(getIntent().getStringExtra("currentQuestion"));
+            ansA.setText(getIntent().getStringExtra("currentAnswerA"));
+            ansB.setText(getIntent().getStringExtra("currentAnswerB"));
+            ansC.setText(getIntent().getStringExtra("currentAnswerC"));
 
-            question.setText(fillQuestion);
-            ans1.setText(fillAnswer1);
-            ans2.setText(fillAnswer2);
-            ans3.setText(fillAnswer3);
+            selectA.setChecked(getIntent().getBooleanExtra("isAnswerA", false));
+            selectB.setChecked(getIntent().getBooleanExtra("isAnswerB", false));
+            selectC.setChecked(getIntent().getBooleanExtra("isAnswerC", false));
         }
 
         findViewById(R.id.cardCancel).setOnClickListener(new View.OnClickListener() {
@@ -47,16 +53,21 @@ public class AddQuestion extends AppCompatActivity {
         findViewById(R.id.cardSave).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (question.length() != 0 && ans1.length() != 0 && ans2.length() != 0 && ans3.length() != 0) {
+                if (question.length() != 0 && ansA.length() != 0 && ansB.length() != 0 && ansC.length() != 0 && (selectA.isChecked() || selectB.isChecked() || selectC.isChecked())) {
                     Intent result = new Intent();
                     result.putExtra("question", question.getText().toString());
-                    result.putExtra("answerA", ans1.getText().toString());
-                    result.putExtra("answerB", ans2.getText().toString());
-                    result.putExtra("answerC", ans3.getText().toString());
+                    result.putExtra("answerA", ansA.getText().toString());
+                    result.putExtra("answerB", ansB.getText().toString());
+                    result.putExtra("answerC", ansC.getText().toString());
+                    result.putExtra("markA", selectA.isChecked());
+                    result.putExtra("markB", selectB.isChecked());
+                    result.putExtra("markC", selectC.isChecked());
                     setResult(RESULT_OK, result);
                     finish();
-                } else {
-                    Toast.makeText(getApplicationContext(), "Must fill all fields!", Toast.LENGTH_SHORT).show();
+                } else if (question.length() == 0 || ansA.length() == 0 || ansB.length() == 0 || ansC.length() == 0) {
+                    Toast.makeText(getApplicationContext(), "Must fill in all fields!", Toast.LENGTH_SHORT).show();
+                } else if (!selectA.isChecked() && !selectB.isChecked() && !selectC.isChecked()) {
+                    Toast.makeText(getApplicationContext(), "Must mark an answer!", Toast.LENGTH_SHORT).show();
                 }
             }
         });

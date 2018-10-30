@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/cardCancel"
-        android:layout_width="85dp"
-        android:layout_height="85dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="30dp"
@@ -19,8 +19,8 @@
 
     <ImageView
         android:id="@+id/cardSave"
-        android:layout_width="85dp"
-        android:layout_height="85dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="30dp"
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="5dp"
         android:ems="10"
         android:hint="@string/hint1"
         android:importantForAutofill="no"
@@ -45,9 +45,9 @@
         android:id="@+id/newAnswerA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/newQuestion"
+        android:layout_below="@+id/selectGroup"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="30dp"
         android:ems="10"
         android:hint="@string/hint2"
         android:importantForAutofill="no"
@@ -59,7 +59,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/newAnswerA"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="40dp"
         android:ems="10"
         android:hint="@string/hint2"
         android:importantForAutofill="no"
@@ -71,12 +71,50 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/newAnswerB"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="25dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="40dp"
         android:ems="10"
         android:hint="@string/hint2"
         android:importantForAutofill="no"
         android:inputType="textMultiLine"
         tools:targetApi="o" />
+
+    <RadioGroup
+        android:id="@+id/selectGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/newQuestion"
+        android:layout_alignParentEnd="false"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/selectAnswerA"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:fontFamily="sans-serif-condensed"
+            android:text="@string/selectionA"
+            android:textAlignment="center" />
+
+        <RadioButton
+            android:id="@+id/selectAnswerB"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
+            android:fontFamily="sans-serif-condensed"
+            android:text="@string/selectionB"
+            android:textAlignment="center" />
+
+        <RadioButton
+            android:id="@+id/selectAnswerC"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
+            android:fontFamily="sans-serif-condensed"
+            android:text="@string/selectionC"
+            android:textAlignment="center" />
+
+    </RadioGroup>
 
 </RelativeLayout>

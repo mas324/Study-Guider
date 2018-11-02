@@ -6,7 +6,7 @@
     <string name="textAnswer3">George H.W. Bush</string>
     <string name="hint1">Enter the question here"</string>
     <string name="hint2">Enter the answer here</string>
-    <string name="selectionA">A is answer</string>
+    <string name="selectionA">A is the answer</string>
     <string name="selectionB">B is the answer</string>
     <string name="selectionC">C is the answer</string>
 </resources>

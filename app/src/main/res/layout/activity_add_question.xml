@@ -92,28 +92,27 @@
         <RadioButton
             android:id="@+id/selectAnswerA"
             android:layout_width="120dp"
-            android:layout_height="40dp"
+            android:layout_height="25dp"
             android:fontFamily="sans-serif-condensed"
             android:text="@string/selectionA"
-            android:textAlignment="center" />
+            android:textAlignment="viewStart" />
 
         <RadioButton
             android:id="@+id/selectAnswerB"
             android:layout_width="120dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="10dp"
+            android:layout_height="25dp"
             android:fontFamily="sans-serif-condensed"
             android:text="@string/selectionB"
-            android:textAlignment="center" />
+            android:textAlignment="viewStart"
+            android:textAllCaps="false" />
 
         <RadioButton
             android:id="@+id/selectAnswerC"
             android:layout_width="120dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="10dp"
+            android:layout_height="25dp"
             android:fontFamily="sans-serif-condensed"
             android:text="@string/selectionC"
-            android:textAlignment="center" />
+            android:textAlignment="viewStart" />
 
     </RadioGroup>
 

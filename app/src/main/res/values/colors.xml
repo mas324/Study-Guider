@@ -11,4 +11,8 @@
 	<color name="colorAnswerWrong">#8C2300</color>
 	<color name="colorAnswerTextCorrect">#96FF73</color>
 	<color name="colorAnswerTextWrong">#FF8080</color>
+
+    <color name="colorUnclicked">#0000D9</color>
+    <color name="colorClicked">#FF00FF</color>
+    <color name="colorHighlight">#FF2626</color>
 </resources>

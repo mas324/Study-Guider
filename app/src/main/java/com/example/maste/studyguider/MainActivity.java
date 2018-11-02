@@ -29,19 +29,19 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (isAnsA) {
                     //Set to correct colors
-                    findViewById(answer1).setBackgroundColor(getResources().getColor(R.color.colorAnswerCorrect, null));
+                    findViewById(answer1).setBackground(getDrawable(R.drawable.small_rounded_shape_correct));
                     ((TextView) findViewById(answer1)).setTextColor(getResources().getColor(R.color.colorAnswerTextCorrect, null));
                 } else {
                     //Set to wrong colors
                     if (isAnsB) {
-                        findViewById(answer2).setBackgroundColor(getResources().getColor(R.color.colorAnswerCorrect, null));
+                        findViewById(answer2).setBackground(getDrawable(R.drawable.small_rounded_shape_correct));
                         ((TextView) findViewById(answer2)).setTextColor(getResources().getColor(R.color.colorAnswerTextCorrect, null));
                     } else if (isAnsC) {
-                        findViewById(answer3).setBackgroundColor(getResources().getColor(R.color.colorAnswerCorrect, null));
+                        findViewById(answer3).setBackground(getDrawable(R.drawable.small_rounded_shape_correct));
                         ((TextView) findViewById(answer3)).setTextColor(getResources().getColor(R.color.colorAnswerTextCorrect, null));
                     }
 
-                    findViewById(answer1).setBackgroundColor(getResources().getColor(R.color.colorAnswerWrong, null));
+                    findViewById(answer1).setBackground(getDrawable(R.drawable.small_rounded_shape_wrong));
                     ((TextView) findViewById(answer1)).setTextColor(getResources().getColor(R.color.colorAnswerTextWrong, null));
                 }
             }
@@ -52,19 +52,19 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (isAnsB) {
                     //Set to correct colors
-                    findViewById(answer2).setBackgroundColor(getResources().getColor(R.color.colorAnswerCorrect, null));
+                    findViewById(answer2).setBackground(getDrawable(R.drawable.small_rounded_shape_correct));
                     ((TextView) findViewById(answer2)).setTextColor(getResources().getColor(R.color.colorAnswerTextCorrect, null));
                 } else {
                     //Set to wrong colors
                     if (isAnsA) {
-                        findViewById(answer1).setBackgroundColor(getResources().getColor(R.color.colorAnswerCorrect, null));
+                        findViewById(answer1).setBackground(getDrawable(R.drawable.small_rounded_shape_correct));
                         ((TextView) findViewById(answer1)).setTextColor(getResources().getColor(R.color.colorAnswerTextCorrect, null));
                     } else if (isAnsC) {
-                        findViewById(answer3).setBackgroundColor(getResources().getColor(R.color.colorAnswerCorrect, null));
+                        findViewById(answer3).setBackground(getDrawable(R.drawable.small_rounded_shape_correct));
                         ((TextView) findViewById(answer3)).setTextColor(getResources().getColor(R.color.colorAnswerTextCorrect, null));
                     }
 
-                    findViewById(answer2).setBackgroundColor(getResources().getColor(R.color.colorAnswerWrong, null));
+                    findViewById(answer2).setBackground(getDrawable(R.drawable.small_rounded_shape_wrong));
                     ((TextView) findViewById(answer2)).setTextColor(getResources().getColor(R.color.colorAnswerTextWrong, null));
                 }
             }
@@ -75,19 +75,19 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (isAnsC) {
                     //Set to correct colors
-                    findViewById(answer3).setBackgroundColor(getResources().getColor(R.color.colorAnswerCorrect, null));
+                    findViewById(answer3).setBackground(getDrawable(R.drawable.small_rounded_shape_correct));
                     ((TextView) findViewById(answer3)).setTextColor(getResources().getColor(R.color.colorAnswerTextCorrect, null));
                 } else {
                     //Set to wrong colors
                     if (isAnsA) {
-                        findViewById(answer1).setBackgroundColor(getResources().getColor(R.color.colorAnswerCorrect, null));
+                        findViewById(answer1).setBackground(getDrawable(R.drawable.small_rounded_shape_correct));
                         ((TextView) findViewById(answer1)).setTextColor(getResources().getColor(R.color.colorAnswerTextCorrect, null));
                     } else if (isAnsB) {
-                        findViewById(answer2).setBackgroundColor(getResources().getColor(R.color.colorAnswerCorrect, null));
+                        findViewById(answer2).setBackground(getDrawable(R.drawable.small_rounded_shape_correct));
                         ((TextView) findViewById(answer2)).setTextColor(getResources().getColor(R.color.colorAnswerTextCorrect, null));
                     }
 
-                    findViewById(answer3).setBackgroundColor(getResources().getColor(R.color.colorAnswerWrong, null));
+                    findViewById(answer3).setBackground(getDrawable(R.drawable.small_rounded_shape_wrong));
                     ((TextView) findViewById(answer3)).setTextColor(getResources().getColor(R.color.colorAnswerTextWrong, null));
                 }
             }
@@ -97,11 +97,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Resets view to default
-                findViewById(answer1).setBackgroundColor(getResources().getColor(R.color.colorAnswerBase, null));
+                findViewById(answer1).setBackground(getDrawable(R.drawable.small_rounded_shape_base));
                 ((TextView) findViewById(answer1)).setTextColor(Color.WHITE);
-                findViewById(answer2).setBackgroundColor(getResources().getColor(R.color.colorAnswerBase, null));
+                findViewById(answer2).setBackground(getDrawable(R.drawable.small_rounded_shape_base));
                 ((TextView) findViewById(answer2)).setTextColor(Color.WHITE);
-                findViewById(answer3).setBackgroundColor(getResources().getColor(R.color.colorAnswerBase, null));
+                findViewById(answer3).setBackground(getDrawable(R.drawable.small_rounded_shape_base));
                 ((TextView) findViewById(answer3)).setTextColor(Color.WHITE);
             }
         });
@@ -168,11 +168,12 @@ public class MainActivity extends AppCompatActivity {
             isAnsC = data.getBooleanExtra("markC", false);
 
             //Resets the answers
-            findViewById(answer1).setBackgroundColor(getResources().getColor(R.color.colorAnswerBase, null));
+            //Resets view to default
+            findViewById(answer1).setBackground(getDrawable(R.drawable.small_rounded_shape_base));
             ((TextView) findViewById(answer1)).setTextColor(Color.WHITE);
-            findViewById(answer2).setBackgroundColor(getResources().getColor(R.color.colorAnswerBase, null));
+            findViewById(answer2).setBackground(getDrawable(R.drawable.small_rounded_shape_base));
             ((TextView) findViewById(answer2)).setTextColor(Color.WHITE);
-            findViewById(answer3).setBackgroundColor(getResources().getColor(R.color.colorAnswerBase, null));
+            findViewById(answer3).setBackground(getDrawable(R.drawable.small_rounded_shape_base));
             ((TextView) findViewById(answer3)).setTextColor(Color.WHITE);
 
             Snackbar.make(findViewById(R.id.mainScreen), "Card successfully created.", Snackbar.LENGTH_SHORT).show();

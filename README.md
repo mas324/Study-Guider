@@ -1,11 +1,11 @@
 ## Lab 2
 
 ### App Description
-`TODO://` Add app description
+A more advanced version of the flashcard app, with new features such as adding or editing existing cards!
 
 ### App Walk-though
 
-<img src="YOUR_GIF_URL_HERE" width=200><br>
+<img src="https://i.imgur.com/LYSNKbV.gifv" width=200><br>
 
 ## Required
 - [x] User can click on a ‘+’ button that takes the user to new ‘Add Card Screen’

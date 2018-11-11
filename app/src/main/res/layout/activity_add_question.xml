@@ -28,6 +28,17 @@
         android:contentDescription="@android:string/untitled"
         app:srcCompat="@drawable/save_icon" />
 
+    <ImageView
+        android:id="@+id/cardDelete"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:contentDescription="@android:string/untitled"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/trash_icon" />
+
     <EditText
         android:id="@+id/newQuestion"
         android:layout_width="match_parent"

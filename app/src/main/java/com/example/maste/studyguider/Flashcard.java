@@ -9,8 +9,9 @@ import android.support.annotation.Nullable;
 
 import java.util.UUID;
 
+@SuppressWarnings("NullableProblems")
 @Entity
-public class Flashcard {
+class Flashcard {
 
     @PrimaryKey
     @NonNull

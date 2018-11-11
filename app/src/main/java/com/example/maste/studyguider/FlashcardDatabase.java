@@ -5,7 +5,7 @@ import android.content.Context;
 
 import java.util.List;
 
-public class FlashcardDatabase {
+class FlashcardDatabase {
     private final AppDatabase db;
 
     FlashcardDatabase(Context context) {

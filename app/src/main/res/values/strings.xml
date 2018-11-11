@@ -9,4 +9,5 @@
     <string name="selectionA">A is the answer</string>
     <string name="selectionB">B is the answer</string>
     <string name="selectionC">C is the answer</string>
+    <string name="Default">Whoops! You trashed all your cards! You can only create new ones now.</string>
 </resources>

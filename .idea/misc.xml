@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="EntryPointsManager">
+    <pattern value="com.example.maste.studyguider.Flashcard" method="setQuestion" />
+    <pattern value="com.example.maste.studyguider.Flashcard" />
+    <pattern value="com.example.maste.studyguider.Flashcard" method="setAnswer" />
+    <pattern value="com.example.maste.studyguider.Flashcard" method="setWrongAnswer1" />
+    <pattern value="com.example.maste.studyguider.Flashcard" method="setWrongAnswer2" />
+  </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="android.support.annotation.Nullable" />
     <option name="myDefaultNotNull" value="android.support.annotation.NonNull" />

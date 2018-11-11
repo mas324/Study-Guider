@@ -77,6 +77,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:contentDescription="@android:string/untitled"
+        android:visibility="visible"
         app:srcCompat="@drawable/add_icon" />
 
     <ImageView
@@ -87,5 +88,32 @@
         android:layout_alignParentBottom="true"
         android:contentDescription="@android:string/untitled"
         app:srcCompat="@drawable/edit_icon" />
+
+    <ImageView
+        android:id="@+id/cardPrevious"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/flashQuestion"
+        android:layout_alignBottom="@+id/flashQuestion"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="0dp"
+        android:layout_toStartOf="@+id/flashQuestion"
+        android:contentDescription="@android:string/untitled"
+        android:rotation="180"
+        app:srcCompat="@drawable/arrow_icon" />
+
+    <ImageView
+        android:id="@+id/cardNext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/cardPrevious"
+        android:layout_alignBottom="@+id/cardPrevious"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="0dp"
+        android:layout_toEndOf="@+id/flashQuestion"
+        android:contentDescription="@android:string/untitled"
+        app:srcCompat="@drawable/arrow_icon" />
 
 </RelativeLayout>

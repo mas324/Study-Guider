@@ -139,13 +139,16 @@ public class MainActivity extends AppCompatActivity {
                     isVisible = true;
                 }
 
-                flashDeck = flashData.getAllCards();
+                if (isVisible) {
+                    flashDeck = flashData.getAllCards();
 
-                for (Flashcard f : flashDeck
-                        ) {
-                    Log.d("DatabaseCollection", f.getQuestion());
+                    for (Flashcard f : flashDeck
+                            ) {
+                        Log.d("DatabaseCollection", f.toString());
+                    }
+                    Log.d("DatabaseIndex", Integer.toString(currentIndex));
+                    Log.d("DatabaseSize", Integer.toString(flashDeck.size()));
                 }
-                Log.d("DatabaseIndex", Integer.toString(currentIndex));
             }
         });
 
@@ -175,13 +178,14 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.cardNext).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (currentIndex < flashDeck.size())
+                if (currentIndex < flashDeck.size() - 1)
                     currentIndex++;
                 else {
                     currentIndex = 0;
                     Snackbar.make(findViewById(R.id.mainScreen), "Reached last card. Going to first", Snackbar.LENGTH_SHORT).show();
                 }
                 updateView(1);
+                resetView();
             }
         });
 
@@ -195,6 +199,7 @@ public class MainActivity extends AppCompatActivity {
                     Snackbar.make(findViewById(R.id.mainScreen), "Reached first card. Going to last", Snackbar.LENGTH_SHORT).show();
                 }
                 updateView(1);
+                resetView();
             }
         });
     }
@@ -225,28 +230,31 @@ public class MainActivity extends AppCompatActivity {
         ((TextView) findViewById(answer1)).setText(answerA);
         ((TextView) findViewById(answer2)).setText(answerB);
         ((TextView) findViewById(answer3)).setText(answerC);
-
-        if (requestCode == 50) {
-            Snackbar.make(findViewById(R.id.mainScreen), "Card successfully created.", Snackbar.LENGTH_SHORT).show();
-            if (isAnsA)
-                flashData.insertCard(new Flashcard(question, answerA, answerB, answerC));
-            else if (isAnsB)
-                flashData.insertCard(new Flashcard(question, answerB, answerA, answerC));
-            else
-                flashData.insertCard(new Flashcard(question, answerC, answerA, answerB));
-        } else {
-            Snackbar.make(findViewById(R.id.mainScreen), "Card successfully edited.", Snackbar.LENGTH_SHORT).show();
-            if (isAnsA)
-                flashData.updateCard(new Flashcard(question, answerA, answerB, answerC));
-            else if (isAnsB)
-                flashData.updateCard(new Flashcard(question, answerB, answerA, answerC));
-            else
-                flashData.updateCard(new Flashcard(question, answerC, answerA, answerB));
-        }
-
         isAnsA = data.getBooleanExtra("markA", false);
         isAnsB = data.getBooleanExtra("markB", false);
         isAnsC = data.getBooleanExtra("markC", false);
+
+        int set;
+        if (isAnsA)
+            set = 1;
+        else if (isAnsB)
+            set = 2;
+        else
+            set = 3;
+
+        if (requestCode == 50) {
+            Snackbar.make(findViewById(R.id.mainScreen), "Card successfully created.", Snackbar.LENGTH_SHORT).show();
+            flashData.insertCard(new Flashcard(question, answerA, answerB, answerC, set));
+        } else {
+            Snackbar.make(findViewById(R.id.mainScreen), "Card successfully edited.", Snackbar.LENGTH_SHORT).show();
+            Flashcard flashcard = flashDeck.get(currentIndex);
+            flashcard.setQuestion(question);
+            flashcard.setChoice1(answerA);
+            flashcard.setChoice2(answerB);
+            flashcard.setChoice3(answerC);
+            flashcard.setCorrect(set);
+            flashData.updateCard(flashcard);
+        }
 
         //Resets the answers
         //Resets view to default
@@ -256,35 +264,77 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateView(int source) {
         try {
-            if (source == -1) {
-                currentIndex++;
+            if (source == -1 || source == 1) {
+                if (currentIndex < flashDeck.size() && source == -1)
+                    currentIndex++;
+                else if (source == -1)
+                    currentIndex = 0;
+
                 ((TextView) findViewById(R.id.flashQuestion)).setText(flashDeck.get(currentIndex).getQuestion());
-                ((TextView) findViewById(R.id.flashAnswer1)).setText(flashDeck.get(currentIndex).getAnswer());
-                ((TextView) findViewById(R.id.flashAnswer2)).setText(flashDeck.get(currentIndex).getWrongAnswer1());
-                ((TextView) findViewById(R.id.flashAnswer3)).setText(flashDeck.get(currentIndex).getWrongAnswer2());
+                ((TextView) findViewById(R.id.flashAnswer1)).setText(flashDeck.get(currentIndex).getChoice1());
+                ((TextView) findViewById(R.id.flashAnswer2)).setText(flashDeck.get(currentIndex).getChoice2());
+                ((TextView) findViewById(R.id.flashAnswer3)).setText(flashDeck.get(currentIndex).getChoice3());
+
+                int set = flashDeck.get(currentIndex).getCorrect();
+                if (set == 1) {
+                    isAnsA = true;
+                    isAnsB = false;
+                    isAnsC = false;
+                } else if (set == 2) {
+                    isAnsA = false;
+                    isAnsB = true;
+                    isAnsC = false;
+                } else if (set == 3) {
+                    isAnsA = false;
+                    isAnsB = false;
+                    isAnsC = true;
+                }
             } else if (source == 0) {
                 ((TextView) findViewById(R.id.flashQuestion)).setText(flashDeck.get(0).getQuestion());
-                ((TextView) findViewById(R.id.flashAnswer1)).setText(flashDeck.get(0).getAnswer());
-                ((TextView) findViewById(R.id.flashAnswer2)).setText(flashDeck.get(0).getWrongAnswer1());
-                ((TextView) findViewById(R.id.flashAnswer3)).setText(flashDeck.get(0).getWrongAnswer2());
-            } else if (source == 1) {
-                ((TextView) findViewById(R.id.flashQuestion)).setText(flashDeck.get(currentIndex).getQuestion());
-                ((TextView) findViewById(R.id.flashAnswer1)).setText(flashDeck.get(currentIndex).getAnswer());
-                ((TextView) findViewById(R.id.flashAnswer2)).setText(flashDeck.get(currentIndex).getWrongAnswer1());
-                ((TextView) findViewById(R.id.flashAnswer3)).setText(flashDeck.get(currentIndex).getWrongAnswer2());
+                ((TextView) findViewById(R.id.flashAnswer1)).setText(flashDeck.get(0).getChoice1());
+                ((TextView) findViewById(R.id.flashAnswer2)).setText(flashDeck.get(0).getChoice2());
+                ((TextView) findViewById(R.id.flashAnswer3)).setText(flashDeck.get(0).getChoice3());
+
+                int set = flashDeck.get(0).getCorrect();
+                if (set == 1) {
+                    isAnsA = true;
+                    isAnsB = false;
+                    isAnsC = false;
+                } else if (set == 2) {
+                    isAnsA = false;
+                    isAnsB = true;
+                    isAnsC = false;
+                } else if (set == 3) {
+                    isAnsA = false;
+                    isAnsB = false;
+                    isAnsC = true;
+                }
             }
 
             findViewById(R.id.cardEdit).setVisibility(View.VISIBLE);
             ((ImageView) findViewById(R.id.visibleToggle)).setImageResource(R.drawable.eye_visible);
             isVisible = true;
-
+            resetView();
         } catch (IndexOutOfBoundsException e) {
             if (!flashDeck.isEmpty()) {
                 ((TextView) findViewById(R.id.flashQuestion)).setText(flashDeck.get(0).getQuestion());
-                ((TextView) findViewById(R.id.flashAnswer1)).setText(flashDeck.get(0).getAnswer());
-                ((TextView) findViewById(R.id.flashAnswer2)).setText(flashDeck.get(0).getWrongAnswer1());
-                ((TextView) findViewById(R.id.flashAnswer3)).setText(flashDeck.get(0).getWrongAnswer2());
+                ((TextView) findViewById(R.id.flashAnswer1)).setText(flashDeck.get(0).getChoice1());
+                ((TextView) findViewById(R.id.flashAnswer2)).setText(flashDeck.get(0).getChoice2());
+                ((TextView) findViewById(R.id.flashAnswer3)).setText(flashDeck.get(0).getChoice3());
+            } else {
+                ((TextView) findViewById(R.id.flashQuestion)).setText(R.string.Default);
+                findViewById(answer1).setVisibility(View.INVISIBLE);
+                findViewById(answer2).setVisibility(View.INVISIBLE);
+                findViewById(answer3).setVisibility(View.INVISIBLE);
+                findViewById(R.id.cardEdit).setVisibility(View.INVISIBLE);
+                ((TextView) findViewById(R.id.flashAnswer1)).setText("");
+                ((TextView) findViewById(R.id.flashAnswer2)).setText("");
+                ((TextView) findViewById(R.id.flashAnswer3)).setText("");
+                ((ImageView) findViewById(R.id.visibleToggle)).setImageResource(R.drawable.eye_invisible);
+                isVisible = false;
             }
+
+            resetView();
         }
     }
 
@@ -295,5 +345,6 @@ public class MainActivity extends AppCompatActivity {
         ((TextView) findViewById(answer2)).setTextColor(Color.WHITE);
         findViewById(answer3).setBackground(getDrawable(R.drawable.small_rounded_shape_base));
         ((TextView) findViewById(answer3)).setTextColor(Color.WHITE);
+        findViewById(R.id.cardEdit).setVisibility(View.VISIBLE);
     }
 }

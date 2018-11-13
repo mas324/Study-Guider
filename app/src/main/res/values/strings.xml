@@ -1,9 +1,5 @@
 <resources>
     <string name="app_name">Study Guider</string>
-    <string name="textQuestion">Who is the 43rd president of the United States?</string>
-    <string name="textAnswer1">Barack Obama</string>
-    <string name="textAnswer2">Bill Clinton</string>
-    <string name="textAnswer3">George H.W. Bush</string>
     <string name="hint1">Enter the question here"</string>
     <string name="hint2">Enter the answer here</string>
     <string name="selectionA">A is the answer</string>

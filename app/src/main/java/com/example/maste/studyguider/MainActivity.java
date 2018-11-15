@@ -226,6 +226,7 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == 50) {
             Snackbar.make(findViewById(R.id.mainScreen), "Card successfully created.", Snackbar.LENGTH_SHORT).show();
             flashData.insertCard(new Flashcard(question, answerA, answerB, answerC, set));
+            currentIndex = flashData.getAllCards().size() - 1;
         } else if (requestCode == 100) {
             Snackbar.make(findViewById(R.id.mainScreen), "Card successfully edited.", Snackbar.LENGTH_SHORT).show();
             Flashcard flashcard = flashDeck.get(currentIndex);
@@ -241,6 +242,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateView(int source) {
+        flashDeck = flashData.getAllCards();
         try {
             resetView();
             ((ImageView) findViewById(R.id.visibleToggle)).setImageResource(R.drawable.eye_visible);

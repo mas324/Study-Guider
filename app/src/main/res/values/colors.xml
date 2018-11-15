@@ -6,7 +6,8 @@
 	
     <color name="colorQuestion">#094B8E</color>
 	<color name="colorQuestionText">#9EE6ED</color>
-	<color name="colorAnswerBase">#8000FF</color>
+    <color name="colorAnswerBase">#AF00FF</color>
+    <color name="colorAnswerBase2">#5000FF</color>
 	<color name="colorAnswerCorrect">#008C46</color>
 	<color name="colorAnswerWrong">#8C2300</color>
 	<color name="colorAnswerTextCorrect">#96FF73</color>

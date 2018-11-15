@@ -9,17 +9,16 @@
 
     <TextView
         android:id="@+id/flashQuestion"
-        android:layout_width="330dp"
+        android:layout_width="275dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:background="@drawable/rounded_shape"
         android:elevation="10dp"
-        android:text="@string/textQuestion"
         android:textAlignment="center"
         android:textColor="@color/colorQuestionText"
-        android:textSize="40sp" />
+        android:textSize="32sp" />
 
     <TextView
         android:id="@+id/flashAnswer1"
@@ -30,10 +29,9 @@
         android:layout_marginStart="0dp"
         android:layout_marginTop="40dp"
         android:background="@drawable/small_rounded_shape_base"
-        android:text="@string/textAnswer1"
         android:textAlignment="center"
         android:textColor="@android:color/white"
-        android:textSize="36sp" />
+        android:textSize="30sp" />
 
     <TextView
         android:id="@+id/flashAnswer2"
@@ -42,10 +40,9 @@
         android:layout_below="@+id/flashAnswer1"
         android:layout_marginTop="20dp"
         android:background="@drawable/small_rounded_shape_base"
-        android:text="@string/textAnswer2"
         android:textAlignment="center"
         android:textColor="@android:color/white"
-        android:textSize="36sp" />
+        android:textSize="30sp" />
 
     <TextView
         android:id="@+id/flashAnswer3"
@@ -55,37 +52,68 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="20dp"
         android:background="@drawable/small_rounded_shape_base"
-        android:text="@string/textAnswer3"
         android:textAlignment="center"
         android:textColor="@android:color/white"
-        android:textSize="36sp" />
+        android:textSize="30sp" />
 
     <ImageView
         android:id="@+id/visibleToggle"
-        android:layout_width="66dp"
-        android:layout_height="59dp"
+        android:layout_width="60dp"
+        android:layout_height="55dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="0dp"
+        android:layout_marginBottom="12dp"
         android:contentDescription="@android:string/untitled"
         app:srcCompat="@drawable/eye_visible" />
 
     <ImageView
         android:id="@+id/cardAdd"
-        android:layout_width="65dp"
-        android:layout_height="65dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
         android:contentDescription="@android:string/untitled"
+        android:visibility="visible"
         app:srcCompat="@drawable/add_icon" />
 
     <ImageView
         android:id="@+id/cardEdit"
-        android:layout_width="65dp"
-        android:layout_height="65dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginBottom="15dp"
         android:contentDescription="@android:string/untitled"
         app:srcCompat="@drawable/edit_icon" />
+
+    <ImageView
+        android:id="@+id/cardPrevious"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/flashQuestion"
+        android:layout_alignBottom="@+id/flashQuestion"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="0dp"
+        android:layout_toStartOf="@+id/flashQuestion"
+        android:contentDescription="@android:string/untitled"
+        android:rotation="180"
+        app:srcCompat="@drawable/arrow_icon" />
+
+    <ImageView
+        android:id="@+id/cardNext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/cardPrevious"
+        android:layout_alignBottom="@+id/cardPrevious"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="0dp"
+        android:layout_toEndOf="@+id/flashQuestion"
+        android:contentDescription="@android:string/untitled"
+        app:srcCompat="@drawable/arrow_icon" />
 
 </RelativeLayout>

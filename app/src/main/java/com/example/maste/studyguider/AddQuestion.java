@@ -40,12 +40,22 @@ public class AddQuestion extends AppCompatActivity {
             selectA.setChecked(getIntent().getBooleanExtra("isAnswerA", false));
             selectB.setChecked(getIntent().getBooleanExtra("isAnswerB", false));
             selectC.setChecked(getIntent().getBooleanExtra("isAnswerC", false));
+
+            findViewById(R.id.cardDelete).setVisibility(View.VISIBLE);
         }
 
         findViewById(R.id.cardCancel).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setResult(RESULT_CANCELED);
+                finish();
+            }
+        });
+
+        findViewById(R.id.cardDelete).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setResult(-5);
                 finish();
             }
         });

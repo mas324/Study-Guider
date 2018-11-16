@@ -16,4 +16,7 @@
     <color name="colorUnclicked">#0000D9</color>
     <color name="colorClicked">#FF00FF</color>
     <color name="colorHighlight">#FF2626</color>
+
+    <color name="colorSwitchOff">#FF0000</color>
+    <color name="colorSwitchOn">#00CC00</color>
 </resources>

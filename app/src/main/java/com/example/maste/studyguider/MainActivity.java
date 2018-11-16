@@ -8,9 +8,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import java.util.List;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private int currentIndex = 0;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -164,11 +166,17 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.cardNext).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (currentIndex < flashDeck.size() - 1)
-                    currentIndex++;
-                else {
-                    currentIndex = 0;
-                    Snackbar.make(findViewById(R.id.mainScreen), "Reached last card. Going to first", Snackbar.LENGTH_SHORT).show();
+                if (((Switch) findViewById(R.id.cardShuffle)).isChecked()) {
+                    Log.d("IndexCurrent", Integer.toString(currentIndex));
+                    currentIndex = getRandom(flashDeck.size() - 1);
+                    Log.d("IndexNew", Integer.toString(currentIndex));
+                } else {
+                    if (currentIndex < flashDeck.size() - 1)
+                        currentIndex++;
+                    else {
+                        currentIndex = 0;
+                        Snackbar.make(findViewById(R.id.mainScreen), "Reached last card. Going to first", Snackbar.LENGTH_SHORT).show();
+                    }
                 }
                 updateView(1);
             }
@@ -184,6 +192,20 @@ public class MainActivity extends AppCompatActivity {
                     Snackbar.make(findViewById(R.id.mainScreen), "Reached first card. Going to last", Snackbar.LENGTH_SHORT).show();
                 }
                 updateView(1);
+            }
+        });
+
+        findViewById(R.id.cardShuffle).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Switch toggle = findViewById(R.id.cardShuffle);
+                if (toggle.isChecked()) {
+                    toggle.setText(R.string.SwitchOn);
+                    toggle.setTextColor(getResources().getColor(R.color.colorSwitchOn, null));
+                } else {
+                    toggle.setText(R.string.SwitchOff);
+                    toggle.setTextColor(getResources().getColor(R.color.colorSwitchOff, null));
+                }
             }
         });
     }
@@ -294,6 +316,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         } catch (IndexOutOfBoundsException e) {
+            Log.e("DataBaseError", "Index went out of bounds!");
             if (!flashDeck.isEmpty()) {
                 ((TextView) findViewById(R.id.flashQuestion)).setText(flashDeck.get(0).getQuestion());
                 ((TextView) findViewById(R.id.flashAnswer1)).setText(flashDeck.get(0).getChoice1());
@@ -322,13 +345,17 @@ public class MainActivity extends AppCompatActivity {
 
     private void toggleVisibility(int source) {
         if (source == 1) {
+            findViewById(R.id.visibleToggle).setVisibility(View.INVISIBLE);
             findViewById(R.id.cardEdit).setVisibility(View.INVISIBLE);
             findViewById(R.id.cardNext).setVisibility(View.INVISIBLE);
             findViewById(R.id.cardPrevious).setVisibility(View.INVISIBLE);
+            findViewById(R.id.cardShuffle).setVisibility(View.INVISIBLE);
         } else if (source == 2) {
+            findViewById(R.id.visibleToggle).setVisibility(View.VISIBLE);
             findViewById(R.id.cardEdit).setVisibility(View.VISIBLE);
             findViewById(R.id.cardNext).setVisibility(View.VISIBLE);
             findViewById(R.id.cardPrevious).setVisibility(View.VISIBLE);
+            findViewById(R.id.cardShuffle).setVisibility(View.VISIBLE);
         }
 
         if (isVisible) {
@@ -340,5 +367,17 @@ public class MainActivity extends AppCompatActivity {
             findViewById(answer2).setVisibility(View.INVISIBLE);
             findViewById(answer3).setVisibility(View.INVISIBLE);
         }
+    }
+
+    private int getRandom(int max) {
+        int output;
+        int iterate = 0;
+
+        do {
+            output = new Random().nextInt(max + 1);
+            iterate++;
+        } while (output == currentIndex && iterate < 10);
+
+        return output;
     }
 }

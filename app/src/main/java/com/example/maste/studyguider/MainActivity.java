@@ -370,7 +370,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private int getRandom(int max) {
-        Random rand = new Random();
-        return rand.nextInt(max + 1);
+        int output;
+        int iterate = 0;
+
+        do {
+            output = new Random().nextInt(max + 1);
+            iterate++;
+        } while (output == currentIndex && iterate < 10);
+
+        return output;
     }
 }

@@ -217,7 +217,7 @@ public class MainActivity extends AppCompatActivity {
             if (resultCode == -5) {
                 Log.d("DatabaseCollection", "Deleted card");
                 try {
-                    flashData.deleteCard(((TextView) findViewById(R.id.flashQuestion)).getText().toString());
+                    flashData.deleteCard(flashDeck.get(currentIndex).getUuid());
                     Snackbar.make(findViewById(R.id.mainScreen), "Card successfully deleted.", Snackbar.LENGTH_SHORT).show();
                     flashDeck = flashData.getAllCards();
                     updateView(-1);
@@ -232,7 +232,6 @@ public class MainActivity extends AppCompatActivity {
         String answerA = data.getExtras().getString("answerA");
         String answerB = data.getExtras().getString("answerB");
         String answerC = data.getExtras().getString("answerC");
-        ((TextView) findViewById(R.id.flashQuestion)).setText(question);
         isAnsA = data.getBooleanExtra("markA", false);
         isAnsB = data.getBooleanExtra("markB", false);
         isAnsC = data.getBooleanExtra("markC", false);

@@ -24,10 +24,10 @@ class FlashcardDatabase {
         db.flashcardDao().insertAll(flashcard);
     }
 
-    public void deleteCard(String flashcardQuestion) {
+    public void deleteCard(String Uuid) {
         List<Flashcard> allCards = db.flashcardDao().getAll();
         for (Flashcard f : allCards) {
-            if (f.getQuestion().equals(flashcardQuestion)) {
+            if (f.getUuid().equals(Uuid)) {
                 db.flashcardDao().delete(f);
             }
         }

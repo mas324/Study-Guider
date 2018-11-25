@@ -7,6 +7,8 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -145,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, AddQuestion.class);
                 MainActivity.this.startActivityForResult(intent, 50);
+                overridePendingTransition(R.anim.swipe_left_in, R.anim.swipe_left_out);
             }
         });
 
@@ -160,12 +163,16 @@ public class MainActivity extends AppCompatActivity {
                 data.putExtra("isAnswerB", isAnsB);
                 data.putExtra("isAnswerC", isAnsC);
                 MainActivity.this.startActivityForResult(data, 100);
+                overridePendingTransition(R.anim.swipe_left_in, R.anim.swipe_left_out);
             }
         });
 
         findViewById(R.id.cardNext).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final Animation swipeLeftOut = AnimationUtils.loadAnimation(v.getContext(), R.anim.swipe_left_out);
+                final Animation swipeLeftIn = AnimationUtils.loadAnimation(v.getContext(), R.anim.swipe_left_in);
+
                 if (((Switch) findViewById(R.id.cardShuffle)).isChecked()) {
                     Log.d("IndexCurrent", Integer.toString(currentIndex));
                     currentIndex = getRandom(flashDeck.size() - 1);
@@ -178,20 +185,23 @@ public class MainActivity extends AppCompatActivity {
                         Snackbar.make(findViewById(R.id.mainScreen), "Reached last card. Going to first", Snackbar.LENGTH_SHORT).show();
                     }
                 }
-                updateView(1);
+                updateView(swipeLeftOut, swipeLeftIn);
             }
         });
 
         findViewById(R.id.cardPrevious).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final Animation swipeRightOut = AnimationUtils.loadAnimation(v.getContext(), R.anim.swipe_right_out);
+                final Animation swipeRightIn = AnimationUtils.loadAnimation(v.getContext(), R.anim.swipe_right_in);
+
                 if (currentIndex > 0)
                     currentIndex--;
                 else {
                     currentIndex = flashDeck.size() - 1;
                     Snackbar.make(findViewById(R.id.mainScreen), "Reached first card. Going to last", Snackbar.LENGTH_SHORT).show();
                 }
-                updateView(1);
+                updateView(swipeRightOut, swipeRightIn);
             }
         });
 
@@ -330,6 +340,78 @@ public class MainActivity extends AppCompatActivity {
                 isVisible = false;
                 toggleVisibility(1);
             }
+        }
+    }
+
+    private void updateView(Animation animation1, final Animation animation2) {
+        flashDeck = flashData.getAllCards();
+        resetView();
+        ((ImageView) findViewById(R.id.visibleToggle)).setImageResource(R.drawable.eye_visible);
+        isVisible = true;
+        toggleVisibility(2);
+
+        animation1.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                findViewById(R.id.flashQuestion).startAnimation(animation2);
+                findViewById(answer1).startAnimation(animation2);
+                findViewById(answer2).startAnimation(animation2);
+                findViewById(answer3).startAnimation(animation2);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+        animation2.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                ((TextView) findViewById(R.id.flashQuestion)).setText(flashDeck.get(currentIndex).getQuestion());
+                ((TextView) findViewById(R.id.flashAnswer1)).setText(flashDeck.get(currentIndex).getChoice1());
+                ((TextView) findViewById(R.id.flashAnswer2)).setText(flashDeck.get(currentIndex).getChoice2());
+                ((TextView) findViewById(R.id.flashAnswer3)).setText(flashDeck.get(currentIndex).getChoice3());
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+        findViewById(R.id.cardAdd).setVisibility(View.INVISIBLE);
+        toggleVisibility(1);
+        findViewById(R.id.flashQuestion).startAnimation(animation1);
+        findViewById(answer1).startAnimation(animation1);
+        findViewById(answer2).startAnimation(animation1);
+        findViewById(answer3).startAnimation(animation1);
+        findViewById(R.id.cardAdd).setVisibility(View.VISIBLE);
+        toggleVisibility(2);
+
+        int set = flashDeck.get(currentIndex).getCorrect();
+        if (set == 1) {
+            isAnsA = true;
+            isAnsB = false;
+            isAnsC = false;
+        } else if (set == 2) {
+            isAnsA = false;
+            isAnsB = true;
+            isAnsC = false;
+        } else if (set == 3) {
+            isAnsA = false;
+            isAnsB = false;
+            isAnsC = true;
         }
     }
 

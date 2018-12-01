@@ -5,7 +5,7 @@ A fancy flashcard app that has timers, animations, and confetti as well.
 
 ### App Walk-though
 
-<img src="https://i.imgur.com/tutVIUn.gif" width=200><br>
+<img src="https://i.imgur.com/zbepfMQ.gif" width=200><br>
 
 ## Required
 - [x] User sees a transition animation when going from the main screen to the add card screen.

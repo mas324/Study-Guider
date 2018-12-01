@@ -69,11 +69,11 @@
 
     <ImageView
         android:id="@+id/visibleToggle"
-        android:layout_width="60dp"
+        android:layout_width="55dp"
         android:layout_height="55dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginBottom="6dp"
         android:layout_toEndOf="@+id/cardEdit"
         android:contentDescription="@android:string/untitled"
         app:srcCompat="@drawable/eye_visible" />
@@ -85,7 +85,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="5dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="5dp"
         android:contentDescription="@android:string/untitled"
         android:visibility="visible"
         app:srcCompat="@drawable/add_icon" />
@@ -97,7 +97,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="5dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="5dp"
         android:contentDescription="@android:string/untitled"
         app:srcCompat="@drawable/edit_icon" />
 
@@ -128,28 +128,29 @@
         android:contentDescription="@android:string/untitled"
         app:srcCompat="@drawable/arrow_icon" />
 
-    <Switch
+    <CheckBox
         android:id="@+id/cardShuffle"
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="5dp"
         android:layout_toStartOf="@+id/cardAdd"
         android:text="@string/switchOff"
         android:textAlignment="center"
         android:textColor="@color/colorSwitchOff" />
 
-    <Switch
+    <CheckBox
         android:id="@+id/timerEnable"
-        android:layout_width="78dp"
+        android:layout_width="80dp"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="5dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginBottom="5dp"
         android:layout_toEndOf="@+id/visibleToggle"
         android:text="@string/timerOff"
         android:textAlignment="center"
-        android:textAllCaps="false" />
+        android:textAllCaps="false"
+        android:textColor="@color/colorSwitchOff" />
 
 </RelativeLayout>

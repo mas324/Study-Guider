@@ -3,6 +3,7 @@ package com.example.maste.studyguider;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -21,10 +22,12 @@ public class MainActivity extends AppCompatActivity {
     private final int answer1 = R.id.flashAnswer1;
     private final int answer2 = R.id.flashAnswer2;
     private final int answer3 = R.id.flashAnswer3;
+    private final CountDownTimer[] timer = new CountDownTimer[2];
     private boolean isAnsA = false;
     private boolean isAnsB = false;
     private boolean isAnsC = true;
     private boolean isVisible = true;
+    private boolean isTimerEnabled = false;
     private FlashcardDatabase flashData;
     private List<Flashcard> flashDeck;
     private int currentIndex = 0;
@@ -33,6 +36,33 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        timer[0] = new CountDownTimer(11000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                ((TextView) findViewById(R.id.countdown)).setText(Long.toString(millisUntilFinished / 1000));
+            }
+
+            @Override
+            public void onFinish() {
+                ((TextView) findViewById(R.id.countdown)).setText(R.string.timerDone);
+                timer[1].cancel();
+                timer[1].start();
+            }
+        };
+
+        timer[1] = new CountDownTimer(2000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+            }
+
+            @Override
+            public void onFinish() {
+                final Animation animationOut = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.swipe_left_out);
+                final Animation animationIn = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.swipe_left_in);
+                updateView(animationOut, animationIn);
+            }
+        };
 
         flashData = new FlashcardDatabase(this);
         flashDeck = flashData.getAllCards();
@@ -210,12 +240,27 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Switch toggle = findViewById(R.id.cardShuffle);
                 if (toggle.isChecked()) {
-                    toggle.setText(R.string.SwitchOn);
+                    toggle.setText(R.string.switchOn);
                     toggle.setTextColor(getResources().getColor(R.color.colorSwitchOn, null));
                 } else {
-                    toggle.setText(R.string.SwitchOff);
+                    toggle.setText(R.string.switchOff);
                     toggle.setTextColor(getResources().getColor(R.color.colorSwitchOff, null));
                 }
+            }
+        });
+
+        findViewById(R.id.timerEnable).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Switch toggle = findViewById(R.id.timerEnable);
+                if (toggle.isChecked()) {
+                    toggle.setText(R.string.timerOn);
+                    isTimerEnabled = true;
+                } else {
+                    toggle.setText(R.string.timerOff);
+                    isTimerEnabled = false;
+                }
+                startTimer();
             }
         });
     }
@@ -324,6 +369,7 @@ public class MainActivity extends AppCompatActivity {
                     isAnsC = true;
                 }
             }
+            startTimer();
         } catch (IndexOutOfBoundsException e) {
             Log.e("DataBaseError", "Index went out of bounds!");
             if (!flashDeck.isEmpty()) {
@@ -331,8 +377,9 @@ public class MainActivity extends AppCompatActivity {
                 ((TextView) findViewById(R.id.flashAnswer1)).setText(flashDeck.get(0).getChoice1());
                 ((TextView) findViewById(R.id.flashAnswer2)).setText(flashDeck.get(0).getChoice2());
                 ((TextView) findViewById(R.id.flashAnswer3)).setText(flashDeck.get(0).getChoice3());
+                startTimer();
             } else {
-                ((TextView) findViewById(R.id.flashQuestion)).setText(R.string.Default);
+                ((TextView) findViewById(R.id.flashQuestion)).setText(R.string.defaultQuestion);
                 ((TextView) findViewById(R.id.flashAnswer1)).setText("");
                 ((TextView) findViewById(R.id.flashAnswer2)).setText("");
                 ((TextView) findViewById(R.id.flashAnswer3)).setText("");
@@ -343,7 +390,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void updateView(Animation animation1, final Animation animation2) {
+    private void updateView(final Animation animation1, final Animation animation2) {
         flashDeck = flashData.getAllCards();
         resetView();
         ((ImageView) findViewById(R.id.visibleToggle)).setImageResource(R.drawable.eye_visible);
@@ -413,6 +460,8 @@ public class MainActivity extends AppCompatActivity {
             isAnsB = false;
             isAnsC = true;
         }
+
+        startTimer();
     }
 
     private void resetView() {
@@ -460,5 +509,15 @@ public class MainActivity extends AppCompatActivity {
         } while (output == currentIndex && iterate < 10);
 
         return output;
+    }
+
+    private void startTimer() {
+        if (isTimerEnabled) {
+            timer[0].cancel();
+            timer[0].start();
+        } else {
+            timer[0].cancel();
+            ((TextView) findViewById(R.id.countdown)).setText("");
+        }
     }
 }

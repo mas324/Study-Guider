@@ -5,7 +5,10 @@
     <string name="selectionA">A is the answer</string>
     <string name="selectionB">B is the answer</string>
     <string name="selectionC">C is the answer</string>
-    <string name="Default">Whoops! You trashed all your cards! You can only create new ones now.</string>
-    <string name="SwitchOff">Shuffle Deck</string>
-    <string name="SwitchOn">Deck Shuffled</string>
+    <string name="defaultQuestion">Whoops! You trashed all your cards! You can only create new ones now.</string>
+    <string name="switchOff">Shuffle Deck</string>
+    <string name="switchOn">Deck Shuffled</string>
+    <string name="timerOff">Timer off</string>
+    <string name="timerOn">Timer on</string>
+    <string name="timerDone">Time\'s up!</string>
 </resources>

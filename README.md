@@ -1,7 +1,7 @@
 ## Lab 4
 
 ### App Description
-`TODO://` Add app description
+A fancy flashcard app that has timers, animations, and confetti as well.
 
 ### App Walk-though
 
@@ -14,7 +14,7 @@
 
 ## Optional
 - [x] Extra styling is added!
-- [ ] User sees a countdown timer for each question
+- [x] User sees a countdown timer for each question
 - [ ] User sees a 'card flip' animation when the card is tapped
 - [ ] User sees a celebration animation with confetti when they answer a question correctly
 

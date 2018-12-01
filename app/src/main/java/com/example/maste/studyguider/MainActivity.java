@@ -14,6 +14,8 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.plattysoft.leonids.ParticleSystem;
+
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
@@ -136,7 +138,8 @@ public class MainActivity extends AppCompatActivity {
                 if (wrong != 0) {
                     findViewById(wrong).setBackground(getDrawable(R.drawable.small_rounded_shape_wrong));
                     ((TextView) findViewById(wrong)).setTextColor(getResources().getColor(R.color.colorAnswerTextWrong, null));
-                }
+                } else
+                    new ParticleSystem(MainActivity.this, 1000, R.drawable.confetti, 5000).setSpeedRange(0.1f, 0.5f).oneShot(findViewById(correct), 500);
 
                 toggleListener(false);
             }
